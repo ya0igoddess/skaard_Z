@@ -23,8 +23,6 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gradle bootJar
         
-      - name: Echo
-        run: ll
         
       - name: Copy Jar
         uses: appleboy/scp-action@v0.1.4
@@ -33,6 +31,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
-          source: "./app/lib/app.jar"
+          source: "*.jar"
           target: "~/app"
   
