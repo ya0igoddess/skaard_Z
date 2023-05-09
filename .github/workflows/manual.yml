@@ -14,11 +14,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           
-      - name: BuildJar
+      - name: Install Gradle
         uses: gradle/gradle-build-action@v2
-        with:
-          arguments: bootJar
-          
+      
+      - name: Build Jar
+        run: gradle bootJar
+       
       - name: Copy Jar to Server
         run: scp ./app/build/libs/app.jar ${{ secrets.SKAARD_USER }}@${{ secrets.SKAARD_HOST }}:~/app 
   
