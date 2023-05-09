@@ -18,6 +18,9 @@ jobs:
         uses: gradle/gradle-build-action@v2
       
       - name: Build Jar
+        env:
+          USERNAME: ${{ github.actor }}
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gradle bootJar
        
       - name: Copy Jar to Server
