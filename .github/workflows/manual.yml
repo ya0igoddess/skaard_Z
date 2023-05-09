@@ -3,7 +3,7 @@ name: Manual deploy
 on: [workflow_dispatch]
 
 jobs:
-  greet:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,6 +23,7 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gradle bootJar
         
+      - run: ls
         
       - name: Copy Jar
         uses: appleboy/scp-action@v0.1.4
@@ -31,6 +32,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
-          source: "*.jar"
+          source: "app/libs/*.jar"
           target: "~/app"
   
