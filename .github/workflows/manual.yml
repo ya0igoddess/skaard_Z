@@ -24,8 +24,8 @@ jobs:
         run: gradle bootJar
         
       - name: Create Key File
-        run: echo ${{ secrets.SKAARD_KEY }} > key.txt
+        run: echo "${{ secrets.SKAARD_KEY }}" > key
        
       - name: Copy Jar to Server
-        run: scp -i key.txt -P ${{ secrets.SKAARD_PORT }} ./app/build/libs/app.jar ${{ secrets.SKAARD_USER }}@${{ secrets.SKAARD_HOST }}:~/app 
+        run: scp -i key -P ${{ secrets.SKAARD_PORT }} ./app/build/libs/app.jar ${{ secrets.SKAARD_USER }}@${{ secrets.SKAARD_HOST }}:~/app 
   
