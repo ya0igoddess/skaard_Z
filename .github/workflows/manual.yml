@@ -23,9 +23,12 @@ jobs:
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gradle bootJar
         
-      - name: Create Key File
-        run: echo "${{ secrets.SKAARD_KEY }}" > key
-       
-      - name: Copy Jar to Server
-        run: scp -i key -P ${{ secrets.SKAARD_PORT }} ./app/build/libs/app.jar ${{ secrets.SKAARD_USER }}@${{ secrets.SKAARD_HOST }}:~/app 
+      - name: Copy Jar
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          source: "./app/lib/app.jar"
+          target: "~/app"
   
