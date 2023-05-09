@@ -30,6 +30,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
-          source: "./app/build/libs/app.jar"
-          target: "~/app"
+          source: "app/build/libs/app.jar"
+          target: "~/app/"
   
